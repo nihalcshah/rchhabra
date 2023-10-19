@@ -2,22 +2,29 @@
 import logo from './logo.svg';
 import './App.css';
 import { TextLoop } from "easy-react-text-loop";
-import { Accordion } from 'flowbite-react';
-import {isMobile} from 'react-device-detect';
-
-
-function toggleSpeedDial(event){
-  if(isMobile){
-    if(event.target.parentNode.firstChild.classList.contains("hidden")){
-      event.target.parentNode.firstChild.classList.remove("hidden")
-    }else{
-      event.target.parentNode.firstChild.classList.add("hidden")
-    }
-  }
-}
+import { Accordion, Tabs } from 'flowbite-react';
+import { isMobile } from 'react-device-detect';
+import { useRef, useEffect, useState } from 'react';
+import { CustomFlowbiteTheme } from 'flowbite-react';
+import { Button } from 'flowbite-react';
+import { tabTheme } from './Theme';
 
 function App() {
-
+  const speedDial1 = useRef(null);
+  // if(event.target.parentNode.firstChild.classList.contains("hidden")){
+  //   event.target.parentNode.firstChild.classList.remove("hidden")
+  // }else{
+  //   event.target.parentNode.firstChild.classList.add("hidden")
+  // }
+  function toggleSpeedDial(event) {
+    if (isMobile) {
+      if (speedDial1.current.classList.contains("hidden")) {
+        speedDial1.current.classList.remove("hidden")
+      } else {
+        speedDial1.current.classList.add("hidden")
+      }
+    }
+  }
 
   const experienceList = [
     {
@@ -62,9 +69,76 @@ function App() {
     </Accordion.Panel>
   );
 
+  const leadershipLIst = [
+    {
+      "orgname": "TJ MAD",
+      "org": "TJ Mobile App Developers",
+      "title": "President",
+      "time": "August 2020 - PRESENT",
+      "desc": "As the Lead Developer of NavTJ, a map app for freshmen in my high school, I oversee its beta testing phase and pilot program for student feedback. I also lead instructional activities in mobile app development and coordinate the development of various apps using club resources. Furthermore, I organize research and service projects to engage club members. My multifaceted role drives app development, skills enrichment, and community involvement within our programming club."
+    },
+    {
+      "orgname": "TJ Math Modeling Club",
+      "org": "TJ Math Modeling Club",
+      "title": "Captain ",
+      "time": "August 2020 - PRESENT",
+      "desc": "I apply for and lead competitions that cater to both underclassmen and upperclassmen, fostering participation opportunities for students. Additionally, I serve as a mentor for math modeling and statistics-based research projects."
+    },
+    {
+      "orgname": "TJ Investment",
+      "org": "TJ Investment Club",
+      "title": "Head of Internal Relations ",
+      "time": "August 2023 - PRESENT",
+      "desc": "I managed club member retention and committee leadership positions, organized external mixers and member events, and led the research project committee while acting as a mentor for financial research alongside the Head of Research."
+    },
+    {
+      "orgname": "CFESS",
+      "org": "Calculus for Elementary School Students",
+      "title": "Co-Founder",
+      "time": "April 2023 - PRESENT",
+      "desc": "I worked on creating engaging presentations about differential and integral calculus for younger students and also presented the concepts of infinity and limits to a group of advanced 6th-graders at a local elementary school. These findings were displayed at the National Council for Teachers of Mathematics Conference in October 2023"
+    },
+  ]
+
+  const leadershipVals = leadershipLIst.map((leader, index) =>
+    <Tabs.Item class="!text-white" title={leader.orgname}>
+      <div className='font-extrabold text-2xl mb-1'>{leader.org} <span className='italic text-base font-semibold'>{leader.title}</span></div>
+      <div className='font-bold  text-lime-300 mb-2'>{leader.time}</div>
+      <div>{leader.desc}</div>
+    </Tabs.Item>
+  );
+
   return (
-    <div className="relative w-screen min-h-screen snap-mandatory snap-y ">
-      <div className="relative min-h-screen flex p-16 bg-cyan-950 text-white snap-center snap-always">
+    <div className="relative w-screen min-h-screen snap-mandatory snap-y scroll-smooth ">
+      <div data-dial-init class="fixed z-30 right-12 bottom-6 group">
+        <div id="speed-dial-menu-default" ref={speedDial1} class="flex flex-col items-center hidden mb-4 space-y-2">
+          <a href="#home" type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>
+            <span class="sr-only">Share</span>
+          </a>
+          <a href='#experience' type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+            </svg>
+            <span class="sr-only">Print</span>
+          </a>
+          <a href='#leadership' type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span class="sr-only">Download</span>
+          </a>
+        </div>
+        <button type="button" onClick={toggleSpeedDial} data-dial-toggle="speed-dial-menu-default" aria-controls="speed-dial-menu-default" aria-expanded="false" class="flex items-center justify-center text-black bg-white rounded-full w-14 h-14 hover:bg-gray-100">
+          <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+          </svg>
+          <span class="sr-only">Open actions menu</span>
+        </button>
+      </div>
+      <div id='home' className="relative min-h-screen flex p-16 bg-cyan-950 text-white snap-center snap-always">
         <div className='grid md:grid-cols-2 w-full'>
           <div className='order-1 md:order-2 flex my-auto font-bold leading-loose'>
             <img src='./img/placement.jpg' className='w-56 justify-items-center mx-auto aspect-square rounded-full' />
@@ -73,7 +147,7 @@ function App() {
             <div className='text-4xl md:mb-0 mb-2 md:text-7xl font-medium'>Hi, I'm</div>
             <div className='text-7xl mb-2'>Rishabh Chhabra</div>
             {" "}
-            <TextLoop>
+            <TextLoop interval={100}>
               <span className='text-xl text-lime-600'>A Developer</span>
               <span className='text-xl text-lime-600'>An Innovator</span>
               <span className='text-xl text-lime-600'>A Learner</span>
@@ -82,71 +156,21 @@ function App() {
 
           </div>
         </div>
-
-        <div data-dial-init class="absolute right-6 bottom-6 group">
-          <div id="speed-dial-menu-default" class="flex flex-col items-center hidden mb-4 space-y-2">
-            <button type="button" data-tooltip-target="tooltip-share" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
-                <path d="M14.419 10.581a3.564 3.564 0 0 0-2.574 1.1l-4.756-2.49a3.54 3.54 0 0 0 .072-.71 3.55 3.55 0 0 0-.043-.428L11.67 6.1a3.56 3.56 0 1 0-.831-2.265c.006.143.02.286.043.428L6.33 6.218a3.573 3.573 0 1 0-.175 4.743l4.756 2.491a3.58 3.58 0 1 0 3.508-2.871Z" />
-              </svg>
-              <span class="sr-only">Share</span>
-            </button>
-            <div id="tooltip-share" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-              Share
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <button type="button" data-tooltip-target="tooltip-print" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M5 20h10a1 1 0 0 0 1-1v-5H4v5a1 1 0 0 0 1 1Z" />
-                <path d="M18 7H2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2v-3a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-1-2V2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v3h14Z" />
-              </svg>
-              <span class="sr-only">Print</span>
-            </button>
-            <div id="tooltip-print" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-              Print
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <button type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M14.707 7.793a1 1 0 0 0-1.414 0L11 10.086V1.5a1 1 0 0 0-2 0v8.586L6.707 7.793a1 1 0 1 0-1.414 1.414l4 4a1 1 0 0 0 1.416 0l4-4a1 1 0 0 0-.002-1.414Z" />
-                <path d="M18 12h-2.55l-2.975 2.975a3.5 3.5 0 0 1-4.95 0L4.55 12H2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2Zm-3 5a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z" />
-              </svg>
-              <span class="sr-only">Download</span>
-            </button>
-            <div id="tooltip-download" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-              Download
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-            <button type="button" data-tooltip-target="tooltip-copy" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 dark:hover:text-white shadow-sm dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
-              <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
-                <path d="M5 9V4.13a2.96 2.96 0 0 0-1.293.749L.879 7.707A2.96 2.96 0 0 0 .13 9H5Zm11.066-9H9.829a2.98 2.98 0 0 0-2.122.879L7 1.584A.987.987 0 0 0 6.766 2h4.3A3.972 3.972 0 0 1 15 6v10h1.066A1.97 1.97 0 0 0 18 14V2a1.97 1.97 0 0 0-1.934-2Z" />
-                <path d="M11.066 4H7v5a2 2 0 0 1-2 2H0v7a1.969 1.969 0 0 0 1.933 2h9.133A1.97 1.97 0 0 0 13 18V6a1.97 1.97 0 0 0-1.934-2Z" />
-              </svg>
-              <span class="sr-only">Copy</span>
-            </button>
-            <div id="tooltip-copy" role="tooltip" class="absolute z-10 invisible inline-block w-auto px-3 py-2 text-sm font-medium text-white transition-opacity duration-300 bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-              Copy
-              <div class="tooltip-arrow" data-popper-arrow></div>
-            </div>
-          </div>
-          <button type="button" onClick={toggleSpeedDial} data-dial-toggle="speed-dial-menu-default" aria-controls="speed-dial-menu-default" aria-expanded="false" class="flex items-center justify-center text-white bg-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
-            <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
-            </svg>
-            <span class="sr-only">Open actions menu</span>
-          </button>
-        </div>
-
       </div>
       <div id="experience" className="relative min-h-screen bg-sky-900 text-white snap-center snap-always p-8">
         <h1 className='text-4xl font-bold drop-shadow-2xl p-8'>My Experience</h1>
-
         <div className='p-8 md:p-8 mb-4'>
-
           <Accordion className='!text-white bg-white border-none' >
             {exp}
           </Accordion>
-
+        </div>
+      </div>
+      <div id="leadership" className="relative min-h-fit bg-teal-950 text-white snap-center snap-always p-8">
+        <h1 className='text-4xl font-bold drop-shadow-2xl p-8 md:pb-0'>My Leadership</h1>
+        <div className='p-4  md:p-8 pt-2 mb-4 w-5/6 mx-auto'>
+          <Tabs.Group theme={tabTheme} aria-label="Tabs with underline" className='!text-white' style="underline">
+            {leadershipVals}
+          </Tabs.Group>
         </div>
       </div>
     </div>
