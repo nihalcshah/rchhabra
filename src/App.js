@@ -1,15 +1,12 @@
 'use client';
 import logo from './logo.svg';
 import './App.css';
-import { TextLoop } from "easy-react-text-loop";
 import { Accordion, Tabs } from 'flowbite-react';
 import { isMobile } from 'react-device-detect';
 import { useRef, useEffect, useState } from 'react';
 import { CustomFlowbiteTheme } from 'flowbite-react';
 import { Button } from 'flowbite-react';
 import { tabTheme } from './Theme';
-import RotatingText from 'react-simple-rotating-text'
-import 'react-simple-rotating-text/dist/index.css'
 
 function App() {
   const speedDial1 = useRef(null);
