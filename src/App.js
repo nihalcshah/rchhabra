@@ -8,6 +8,8 @@ import { useRef, useEffect, useState } from 'react';
 import { CustomFlowbiteTheme } from 'flowbite-react';
 import { Button } from 'flowbite-react';
 import { tabTheme } from './Theme';
+import RotatingText from 'react-simple-rotating-text'
+import 'react-simple-rotating-text/dist/index.css'
 
 function App() {
   const speedDial1 = useRef(null);
@@ -108,6 +110,22 @@ function App() {
     </Tabs.Item>
   );
 
+  var example = ['A Developer', 'An Innovator', 'A Student'];
+
+  textSequence(0);
+  function textSequence(i) {
+    if (example.length > i) {
+      setTimeout(function () {
+        document.getElementById("sequence").innerHTML = example[i];
+        textSequence(++i);
+      }, 3000); // 1 second (in milliseconds)
+
+    } else if (example.length == i) { // Loop
+      textSequence(0);
+      setTimeout([], 2000);
+    }
+  }
+
   return (
     <div className="relative w-screen min-h-screen snap-mandatory snap-y scroll-smooth ">
       <div data-dial-init class="fixed z-30 right-12 bottom-6 group">
@@ -146,13 +164,7 @@ function App() {
           <div className='order-2 md:order-1 md:my-auto font-bold leading-loose md:text-left text-center'>
             <div className='text-4xl md:mb-0 mb-2 md:text-7xl font-medium'>Hi, I'm</div>
             <div className='text-7xl mb-2'>Rishabh Chhabra</div>
-            {" "}
-            <TextLoop interval={100}>
-              <span className='text-xl text-lime-600'>A Developer</span>
-              <span className='text-xl text-lime-600'>An Innovator</span>
-              <span className='text-xl text-lime-600'>A Learner</span>
-            </TextLoop>
-            {" "}
+            <div id='sequence' className='text-xl text-lime-600 animate animate-pulse'></div>
 
           </div>
         </div>
