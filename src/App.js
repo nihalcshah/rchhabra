@@ -5,7 +5,7 @@ import { Accordion, Tabs } from 'flowbite-react';
 import { isMobile } from 'react-device-detect';
 import { useRef, useEffect, useState } from 'react';
 import { CustomFlowbiteTheme } from 'flowbite-react';
-import { Button } from 'flowbite-react';
+import { Button, Timeline } from 'flowbite-react';
 import { tabTheme } from './Theme';
 
 function App() {
@@ -145,6 +145,18 @@ function App() {
             </svg>
             <span class="sr-only">Download</span>
           </a>
+          <a href='#service' type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 21v-8.25M15.75 21v-8.25M8.25 21v-8.25M3 9l9-6 9 6m-1.5 12V10.332A48.36 48.36 0 0012 9.75c-2.551 0-5.056.2-7.5.582V21M3 21h18M12 6.75h.008v.008H12V6.75z" />
+            </svg>
+            <span class="sr-only">Download</span>
+          </a>
+          <a href='#courses' type="button" data-tooltip-target="tooltip-download" data-tooltip-placement="left" class="flex justify-center items-center w-[52px] h-[52px] text-gray-500 hover:text-gray-900 bg-white rounded-full border border-gray-200 dark:border-gray-600 shadow-sm dark:hover:text-white dark:text-gray-400 hover:bg-gray-50 dark:bg-gray-700 dark:hover:bg-gray-600 focus:ring-4 focus:ring-gray-300 focus:outline-none dark:focus:ring-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-6 h-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0020.25 18V6A2.25 2.25 0 0018 3.75H6A2.25 2.25 0 003.75 6v12A2.25 2.25 0 006 20.25z" />
+            </svg>
+            <span class="sr-only">Download</span>
+          </a>
         </div>
         <button type="button" onClick={toggleSpeedDial} data-dial-toggle="speed-dial-menu-default" aria-controls="speed-dial-menu-default" aria-expanded="false" class="flex items-center justify-center text-black bg-white rounded-full w-14 h-14 hover:bg-gray-100">
           <svg class="w-5 h-5 transition-transform group-hover:rotate-45" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
@@ -156,7 +168,7 @@ function App() {
       <div id='home' className="relative min-h-screen flex p-16 bg-cyan-950 text-white snap-center snap-always">
         <div className='grid md:grid-cols-2 w-full'>
           <div className='order-1 md:order-2 flex my-auto font-bold leading-loose'>
-            <img src='./img/placement.jpg' className='w-56 justify-items-center mx-auto aspect-square rounded-full' />
+            <img src='./img/IMG_3985.jpg' className='w-56 justify-items-center mx-auto aspect-square rounded-full' />
           </div>
           <div className='order-2 md:order-1 md:my-auto font-bold leading-loose md:text-left text-center'>
             <div className='text-4xl md:mb-0 mb-2 md:text-7xl font-medium'>Hi, I'm</div>
@@ -180,6 +192,73 @@ function App() {
           <Tabs.Group theme={tabTheme} aria-label="Tabs with underline" className='!text-white' style="underline">
             {leadershipVals}
           </Tabs.Group>
+        </div>
+      </div>
+      <div id='service' className='relative min-h-fit bg-cyan-950 text-white snap-center snap-always p-8'>
+        <h1 className='text-4xl font-bold drop-shadow-2xl p-8 md:pb-0 mb-4'>My Service</h1>
+        <Timeline className='p-4  md:p-8 pt-2 mb-4 w-5/6 mx-auto'>
+          <Timeline.Item>
+            <Timeline.Point />
+            <Timeline.Content >
+              <Timeline.Time className='text-white'>Jan 2023 - Present</Timeline.Time>
+              <Timeline.Title className='text-white'>Milk&Trays (Founder and Owner)</Timeline.Title>
+              <Timeline.Body className='text-white'>
+                <ul className='text-sm indent-3 space-y-1'>
+                  <li>Support fundraising efforts through Educate Fairfax to reduce student lunch debt for Herndon MS</li>
+                  <li>Manage and promote the Milk&Trays Instagram and Twitter pages</li>
+                  <li>Working with FCPS Student Rep and School Board to spread awareness about county-wide lunch debt</li>
+                </ul>
+              </Timeline.Body>
+            </Timeline.Content>
+          </Timeline.Item>
+          <Timeline.Item>
+            <Timeline.Point />
+            <Timeline.Content >
+              <Timeline.Time className='text-white'>June 2020 - Present</Timeline.Time>
+              <Timeline.Title className='text-white'>Rajdhani Youth Community (STEM Teacher/Outreach coordinator) </Timeline.Title>
+              <Timeline.Body className='text-white'>
+                <ul className='text-sm indent-3'>
+                  <li>Help organize community Hackathon and other research and service initiatives</li>
+                  <li>Teach Python and Java to students as part of the summer learning opportunity program</li>
+                </ul>
+              </Timeline.Body>
+            </Timeline.Content>
+          </Timeline.Item>
+        </Timeline>
+      </div>
+      <div id='courses' className='relative min-h-fit bg-blue-950 text-white snap-center snap-always p-8'>
+        <h1 className='text-4xl font-bold drop-shadow-2xl p-8 md:pb-0 mb-4'>Courses</h1>
+        <div className='grid grid-cols-3 p-4 md:p-8 pt-2 mb-4 w-5/6 mx-auto'>
+          <div>
+            <div className='text-lg font-bold'>Math + CS</div>
+            <ul className='ml-2'>
+              <li>Computational Statistics</li>
+              <li>Machine Learning</li>
+              <li>Multivariable Calculus</li>
+              <li>Artificial Intelligence (AI)</li>
+              <li>BC Calculus (5)</li>
+              <li>AP Computer Science A (5) and Data Structures</li>
+            </ul>
+          </div>
+          <div>
+            <div className='text-lg font-bold'>STEM Misc.</div>
+            <ul className='ml-2'>
+              <li>Electrodynamics and Quantum Mechanics</li>
+              <li>AP Physics C: Mechanics and Electricity/Magnetism (5,5)</li>
+              <li>AP Chemistry (5)</li>
+              <li>Robotics</li>
+              <li>Design and Tech</li>
+            </ul>
+          </div>
+          <div>
+            <div className='text-lg font-bold'>Humanities and Social Science</div>
+            <ul className='ml-2'>
+              <li>AP English Language</li>
+              <li>AP US Government and Politics</li>
+              <li>AP Macro/Microeconomics (5,4)</li>
+              <li>AP US History (4)</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
